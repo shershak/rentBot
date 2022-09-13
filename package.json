@@ -1,0 +1,20 @@
+{
+  "name": "rent-bot",
+  "version": "1.0.0",
+  "description": "telegram bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "test",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shershak/rentBot.git"
+  },
+  "author": "Oleksandr Shershak",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/shershak/rentBot/issues"
+  },
+  "homepage": "https://github.com/shershak/rentBot#readme"
+}
