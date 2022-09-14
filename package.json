@@ -16,5 +16,11 @@
   "bugs": {
     "url": "https://github.com/shershak/rentBot/issues"
   },
-  "homepage": "https://github.com/shershak/rentBot#readme"
+  "homepage": "https://github.com/shershak/rentBot#readme",
+  "devDependencies": {
+    "typescript": "^4.8.3"
+  },
+  "dependencies": {
+    "grammy": "^1.11.0"
+  }
 }
