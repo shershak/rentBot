@@ -1,17 +1,31 @@
-import { Bot } from 'grammy';
-import { getBotToken } from './src/app/helpers/helpers';
+import { GrammyError, HttpError } from 'grammy';
+import { ParseMode } from 'grammy/out/types.node';
+import { bot } from './src/app/bot';
+import commands from './src/app/handlers/commands';
+import messages from './src/app/handlers/messages';
+import privateChatRestriction from './src/app/helpers/private-chat-restriction';
 import { LocaleService } from './src/app/services/locale.service';
+import { environment } from './src/environments/environment';
 
-// can we export to another file?
-const locale = new LocaleService();
+export const localeService = new LocaleService(); 
 
-const TOKEN: string = getBotToken();
-const bot = new Bot(TOKEN);
+bot.use(privateChatRestriction); // private chat middelware
+bot.use(commands); // command middelware
+bot.use(messages); // messages middelware
 
-bot.command('start', (ctx) => ctx.reply('Welcome! Up and running.'));
-let message = locale.translate('Hello');
-bot.on('message', (ctx) => ctx.reply(message));
+bot.start({
+  onStart: () => console.log('Bot started!')
+});
 
-bot.start();
-bot.catch((error) => {console.log(error)});
-console.log('Bot started!');
+//TODO: create error handler
+bot.catch((error) => {
+  if (error instanceof GrammyError) {
+    console.error("Error in request:", error.description);
+  } else if (error instanceof HttpError) {
+    console.error("Could not contact Telegram:", error);
+  } else {
+    console.error("Unknown error:", error);
+  }
+});
+
+export default bot;
