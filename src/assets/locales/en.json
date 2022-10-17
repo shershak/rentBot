@@ -1,4 +1,7 @@
 {
 	"Hello World": "Hello World",
-  "Hello": "Hello transalted"
+  "Hello": "Hello english",
+
+  "change_language": "Change language",
+  "back": "Back"
 }

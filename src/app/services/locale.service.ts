@@ -1,5 +1,6 @@
 import { I18n } from "i18n"
 import { DEFAULT_LOCALE, LOCALES, LOCALES_DIR } from "../consts"
+import { log } from "../helpers/log";
 
 export class LocaleService {
   private i18n: I18n;
@@ -14,6 +15,7 @@ export class LocaleService {
 
   public setLocale(locale: string): void {
     this.i18n.setLocale(locale);
+    log(`Locale changed to ${locale}`);
   }
   
   public getCurrentLocale(): string {

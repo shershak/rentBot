@@ -1,19 +1,17 @@
 import { Composer, InlineKeyboard } from 'grammy';
-const composer = new Composer();
+import changeLanguageMenu from '../../middleware/menus/languages';
 
-const filter = composer.filter(ctx => ctx.chat?.type === 'private');
-filter.command('start', (ctx) => {
+const composer = new Composer();
+composer.command('start', async (ctx) => {
   if (!ctx.from) {
     return;
   }
   
   const text =
-  `Hi <a href="tg://user?id=${ctx.from.id}">
-  ${ctx.from.first_name + ' ' + ctx.from.last_name}
-  </a>\n`;
+  `Hi <a href="tg://user?id=${ctx.from.id}">${ctx.from.first_name}</a>!`;
   
-  return ctx.reply(text, {
-    reply_markup: new InlineKeyboard().text('test button'), //TODO: constract with rows
+  await ctx.reply(text, {
+    reply_markup: changeLanguageMenu,
     parse_mode: 'HTML'
   });
 });

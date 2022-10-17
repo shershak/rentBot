@@ -1,6 +1,6 @@
 import { ParseMode } from "grammy/out/types";
+import bot from "../../..";
 import { environment } from "../../environments/environment";
-import { bot } from "../bot";
 
 export const log = async (message: string, parse_mode: ParseMode = 'HTML') => {
   if (!environment.isProd) {
