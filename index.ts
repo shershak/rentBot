@@ -1,19 +1,19 @@
-import { Menu } from '@grammyjs/menu';
 import { GrammyError, HttpError } from 'grammy';
-import { ParseMode } from 'grammy/out/types.node';
 import { bot } from './src/app/bot';
 import commands from './src/app/handlers/commands';
 import messages from './src/app/handlers/messages';
-import { errorHandler } from './src/app/helpers/errorHandler';
+import { errorHandler } from './src/app/helpers/error-handler';
 import { log } from './src/app/helpers/log';
 import privateChatRestriction from './src/app/helpers/private-chat-restriction';
-import getUserLanguage from './src/app/middleware/get-user-language';
+import userLanguage from './src/app/middleware/user-language';
 import menus from './src/app/middleware/menus';
-import { LocaleService } from './src/app/services/locale.service';
-import { environment } from './src/environments/environment';
+import sessions from './src/app/middleware/sessions';
+import i18n from './src/app/middleware/i18n';
 
 bot.use(privateChatRestriction); // private chat middelware
-bot.use(getUserLanguage); 
+bot.use(sessions); // session
+bot.use(i18n) // local from session
+bot.use(userLanguage); // TODO: delete ----------
 bot.use(menus); //menus middleware
 bot.use(commands); // command middleware
 bot.use(messages); // messages middleware
