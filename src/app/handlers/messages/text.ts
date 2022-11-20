@@ -4,7 +4,7 @@ const composer = new Composer<MyContext>();
 
 const filter = composer.filter(ctx => ctx.chat?.type === 'private');//TODO: delete
 filter.on("message", (ctx) => {
-  let message = ctx.translate('hello');
+  let message = ctx.translate('hello-world');
   ctx.reply(message);
 });
 

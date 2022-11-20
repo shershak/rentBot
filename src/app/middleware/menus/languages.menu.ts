@@ -24,16 +24,10 @@ function generateLanguageButtons(): MenuRange<MyContext> {
       log(`Info: Current language: ${currentLanguage}`);
 
       if (currentLanguage !== lang.id) {
-        await ctx.i18n.setLocale(lang.id).then(() => log(`Info: Locale is changed: ${lang.id}`))
+        await ctx.i18n.setLocale(lang.id).then(() => log(`Info: Locale is changed: ${lang.name}`))
         ctx.menu.update();
-
         let text = getLanguagesMessageText(ctx);
-        if (ctx.update.callback_query.message?.text !== text) {
-          log('ok')
-          ctx.editMessageText(text, {
-            reply_markup: changeLanguageMenu
-          });
-        }
+        await ctx.editMessageText(text);
       }
       ctx.menu.back();
     }).row();
