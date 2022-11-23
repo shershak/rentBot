@@ -1,6 +1,6 @@
 import { Composer } from "grammy";
 
-import { log } from "./log";
+import { log } from "./logger.service";
 
 const composer = new Composer();
 composer.use(async (ctx, next) => {

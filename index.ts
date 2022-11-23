@@ -1,9 +1,8 @@
-import { GrammyError, HttpError } from 'grammy';
 import { bot } from './src/app/bot';
 import commands from './src/app/handlers/commands';
 import messages from './src/app/handlers/messages';
 import { errorHandler } from './src/app/helpers/error-handler';
-import { log } from './src/app/helpers/log';
+import { log } from './src/app/helpers/logger.service';
 import privateChatRestriction from './src/app/helpers/private-chat-restriction';
 import userLanguage from './src/app/middleware/user-language';
 import menus from './src/app/middleware/menus';
@@ -20,9 +19,7 @@ bot.use(messages); // messages middleware
 
 bot.catch(errorHandler);
 bot.start({
-  onStart: async () => {
-    await log('Bot started!')
-  }
+  onStart: () => log('Bot started!')
 });
 
 export default bot;

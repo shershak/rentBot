@@ -1,19 +1,19 @@
 import { ErrorHandler, GrammyError, HttpError } from "grammy";
-import { log } from "./log";
+import { error } from "./logger.service";
 
-export const errorHandler: ErrorHandler = async (error) => {
-  const ctx = error.ctx;
-  let errorMessage = `Error while handling update: ${ctx.update.update_id}`;
-  await log(errorMessage);
-  const e = error.error;
+export const errorHandler: ErrorHandler = async (err) => {
+  const ctx = err.ctx;
+  const errorMessage = `Error while handling update: ${ctx.update.update_id}`;
+  await error(errorMessage);
+  const e = err.error;
   if (e instanceof GrammyError) {
-    let grammyErrorMessage = `Error in request: ${JSON.stringify(e.description)}`;
-    await log(grammyErrorMessage);
+    const grammyErrorMessage = `Error in request: ${JSON.stringify(e.description)}`;
+    await error(grammyErrorMessage);
   } else if (e instanceof HttpError) {
-    let httpErrorMessage = `Could not contact Telegram: ${JSON.stringify(e)}`;
-    log(httpErrorMessage);
+    const httpErrorMessage = `Could not contact Telegram: ${JSON.stringify(e)}`;
+    error(httpErrorMessage);
   } else {
-    let unknownErrorMessage = `Unknown error: ${JSON.stringify(e)}`;
-    log(unknownErrorMessage);
+    const unknownErrorMessage = `Unknown error: ${JSON.stringify(e)}`;
+    error(unknownErrorMessage);
   }
 }

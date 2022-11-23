@@ -1,6 +1,6 @@
 import { Composer } from "grammy";
 import { DEFAULT_LOCALE } from "../../consts";
-import { log } from "../../helpers/log";
+import { log } from "../../helpers/logger.service";
 import { MyContext } from "../../types/my-context.type";
 
 const composer = new Composer<MyContext>();

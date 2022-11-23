@@ -1,6 +1,6 @@
 import { Menu, MenuRange } from "@grammyjs/menu";
 import { LOCALES } from "../../consts";
-import { log } from "../../helpers/log";
+import { log } from "../../helpers/logger.service";
 import { getLanguagesMessageText } from "../../helpers/message-helper";
 import { Locale } from "../../models/locale.model";
 import { MyContext } from "../../types/my-context.type";
@@ -24,7 +24,9 @@ function generateLanguageButtons(): MenuRange<MyContext> {
       log(`Info: Current language: ${currentLanguage}`);
 
       if (currentLanguage !== lang.id) {
-        await ctx.i18n.setLocale(lang.id).then(() => log(`Info: Locale is changed: ${lang.name}`))
+        await ctx.i18n
+          .setLocale(lang.id)
+          .then(() => log(`Info: Locale is changed: ${lang.name}`))
         ctx.menu.update();
         let text = getLanguagesMessageText(ctx);
         await ctx.editMessageText(text);
