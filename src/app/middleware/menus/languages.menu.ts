@@ -19,14 +19,14 @@ function generateLanguageButtons(): MenuRange<MyContext> {
   const languagesButtons = new MenuRange<MyContext>();
   LOCALES.forEach((lang: Locale) => {
     languagesButtons.text(lang.icon + ' ' + lang.name, async (ctx) => {
-      log(`Info: Button is pressed: ${lang.name}`);
+      log(`Button is pressed: ${lang.name}`, ctx);
       let currentLanguage = await ctx.i18n.getLocale();
-      log(`Info: Current language: ${currentLanguage}`);
+      log(`Current language: ${currentLanguage}`, ctx);
 
       if (currentLanguage !== lang.id) {
         await ctx.i18n
           .setLocale(lang.id)
-          .then(() => log(`Info: Locale is changed: ${lang.name}`))
+          .then(() => log(`Locale is changed: ${lang.name}`, ctx))
         ctx.menu.update();
         let text = getLanguagesMessageText(ctx);
         await ctx.editMessageText(text);
