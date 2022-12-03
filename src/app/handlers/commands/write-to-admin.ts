@@ -9,7 +9,7 @@ composer.command(CommandsEnum.WRITE_TO_ADMIN, async (ctx) => {
   }
 
   const text = ctx.translate('write-to-admin-message');
-  // Add status to user in BD 
+  // Add status to user in session(BD)
 
   await ctx.reply(text, {
     parse_mode: 'HTML'
