@@ -9,9 +9,9 @@ import sessions from './src/app/middleware/sessions';
 import i18n from './src/app/middleware/i18n';
 import logger from './src/app/middleware/logger';
 
+bot.use(logger); // logger to context
 bot.use(privateChatRestriction); // private chat middelware
 bot.use(sessions); // session
-bot.use(logger); // logger to context
 bot.use(i18n) // local from session and translate
 bot.use(menus); //menus middleware
 bot.use(commands); // command middleware

@@ -1,7 +1,5 @@
 import { Composer, NextFunction } from "grammy";
-import { environment } from "../../../environments/environment";
-import { Logger, log } from "../../helpers/logger.service";
-import { LogTypeEnum } from "../../models/log-type.enum";
+import { Logger } from "../../helpers/logger.service";
 import { MyContext } from "../../types/my-context.type";
 
 const composer = new Composer<MyContext>();

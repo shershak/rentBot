@@ -4,10 +4,10 @@ import { MyContext } from "../types/my-context.type";
 
 const composer = new Composer<MyContext>();
 composer.use(async (ctx, next) => {
-  if (ctx?.chat?.type === ChatType.PRIVATE) {
-    await next();
-  } else {
-    ctx.logger.log('Chat error: Chat isn\'t private');
+  if (ctx?.chat?.type !== ChatType.PRIVATE) {
+    ctx.logger.error('Chat isn\'t private');
+    return;
   }
+  await next();
 })
 export default composer;
