@@ -1,7 +1,7 @@
 import bot from "../../..";
-import { environment } from "../../environments/environment";
 import { LogTypeEnum } from "../models/log-type.enum";
 import { MyContext } from "../types/my-context.type";
+import { isProduction } from "./env-helper";
 
 export class Logger {
   private _context: MyContext | undefined;
@@ -21,10 +21,8 @@ export class Logger {
     const userId = this._context ? `[${this._context?.chat?.id}]` : '[system]';
     const time = `[${new Date().toTimeString().slice(0, 8)}]`;
     const logMessage = `${type} ${time} ${userId} ${message}`;
-    if (environment.isProd) {
-      await bot.api.sendMessage(environment.logChannel, logMessage, {
-        parse_mode: "HTML"
-      });
+    if (isProduction()) {
+      await bot.api.sendMessage(Number(process.env.LOG_CHANNEL_ID), logMessage);
       return;
     }
     console.log(logMessage);

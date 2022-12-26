@@ -1,3 +1,5 @@
+import * as dotenv from 'dotenv';
+dotenv.config({ path: `.env.${process.env.NODE_ENV}`})
 import { bot } from './src/app/bot';
 import commands from './src/app/handlers/commands';
 import messages from './src/app/handlers/messages';
@@ -9,6 +11,9 @@ import sessions from './src/app/middleware/sessions';
 import i18n from './src/app/middleware/i18n';
 import logger from './src/app/middleware/logger';
 
+const logService = new Logger();
+logService.log(`App started in ${process.env.NODE_ENV} mode.`);
+
 bot.use(logger); // logger to context
 bot.use(privateChatRestriction); // private chat middelware
 bot.use(sessions); // session
@@ -19,7 +24,7 @@ bot.use(messages); // messages middleware
 
 bot.catch(errorHandler);
 bot.start({
-  onStart: () => new Logger().log('Bot started!')
+  onStart: () => logService.log('Bot started!')
 });
 
 export default bot;
