@@ -5,6 +5,6 @@ hello-message = Hello! Bot is waiting for a command:
   /admin - write to admin
 change-language-message = Bot supports {$languagesNumber} languages: {$languages}.
 change-language = 🇬🇧 Change language
-back = Back
+back = « Back
 
 write-to-admin-message = Write your (only text) message now ⤵️

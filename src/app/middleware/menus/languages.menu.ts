@@ -1,11 +1,15 @@
 import { Menu, MenuRange } from "@grammyjs/menu";
 import { LOCALES } from "../../consts";
-import { getLanguagesMessageText } from "../../helpers/message-helper";
+import { getLanguagesMessageText, showMainMessage } from "../../helpers/message-helper";
 import { Locale } from "../../models/locale.model";
 import { MyContext } from "../../types/my-context.type";
 
 const changeLanguageMenu = new Menu<MyContext>('change-language-menu')
   .submenu((ctx) => ctx.translate('change-language'), 'languages-menu');
+  // .text(
+  //   (ctx) => ctx.translate('back'),
+  //   (ctx) => showMainMessage(ctx)
+  // );
 
 const languagesMenu = new Menu<MyContext>('languages-menu')
   .dynamic(() => generateLanguageButtons())

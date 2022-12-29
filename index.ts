@@ -10,6 +10,7 @@ import menus from './src/app/middleware/menus';
 import sessions from './src/app/middleware/sessions';
 import i18n from './src/app/middleware/i18n';
 import logger from './src/app/middleware/logger';
+import callbacks from './src/app/handlers/callbacks';
 
 const logService = new Logger();
 logService.log(`App started in ${process.env.NODE_ENV} mode.`);
@@ -21,6 +22,7 @@ bot.use(i18n) // local from session and translate
 bot.use(menus); //menus middleware
 bot.use(commands); // command middleware
 bot.use(messages); // messages middleware
+bot.use(callbacks) // add callbacks handler
 
 bot.catch(errorHandler);
 bot.start({
