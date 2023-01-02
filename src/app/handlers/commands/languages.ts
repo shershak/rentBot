@@ -1,9 +1,8 @@
-import { Composer, InlineKeyboard } from 'grammy';
-import { LOCALES } from '../../consts';
-import { getLanguagesMessageText } from '../../helpers/message-helper';
+import { Composer } from 'grammy';
+import { getLanguagesMessageText } from '../../middleware/menus/helpers';
 import changeLanguageMenu from '../../middleware/menus/languages.menu';
 import { CommandsEnum } from '../../models/commands.enum';
-import { MyContext } from '../../types/my-context.type';
+import { MyContext } from '../../types/my-context';
 
 const composer = new Composer<MyContext>();
 composer.command(CommandsEnum.LANGUAGES, async (ctx) => {
@@ -13,8 +12,7 @@ composer.command(CommandsEnum.LANGUAGES, async (ctx) => {
   
   const text = getLanguagesMessageText(ctx);
   await ctx.reply(text, {
-    reply_markup: changeLanguageMenu,
-    parse_mode: 'HTML'
+    reply_markup: changeLanguageMenu
   });
 });
 export default composer;

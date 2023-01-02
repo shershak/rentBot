@@ -1,6 +1,6 @@
 import bot from "../../..";
 import { LogTypeEnum } from "../models/log-type.enum";
-import { MyContext } from "../types/my-context.type";
+import { MyContext } from "../types/my-context";
 import { isProduction } from "./env-helper";
 
 export class Logger {

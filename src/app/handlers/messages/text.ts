@@ -1,16 +1,25 @@
 import { Composer, InlineKeyboard } from 'grammy';
-import { UserStatus } from '../../models/user-status.enum';
-import { MyContext } from '../../types/my-context.type';
-const composer = new Composer<MyContext>();
+import { CallbackEnum } from '../../models/callback.enum';
+import { UserStatusEnum } from '../../models/user-status.enum';
+import { MyContext } from '../../types/my-context';
 
-const filter = composer.filter(ctx => ctx.chat?.type === 'private');//TODO: delete
-filter.on("message:text", (ctx) => {
-  let message = ctx.translate('hello-world');
-  if (ctx.session.status === UserStatus.DEFAULT) {
-    ctx.reply(message);
+const composer = new Composer<MyContext>();
+composer.on("message:text", async ctx => {
+  if (ctx.session.userStatus === UserStatusEnum.WRITE_TO_ADMIN) {
+    ctx.logger.log(`Message sent: ${ctx.message?.text}`)
+    const messageFromUser = ctx.translate('confirm-admin-message', {
+      user: ctx.from?.username ?? ctx.from?.id!,
+      message: ctx.message?.text
+    })
+  
+    await ctx.reply(messageFromUser, {
+      parse_mode: 'HTML',
+      reply_markup:
+        new InlineKeyboard()
+          .text(ctx.translate('confirm-admin-message-button'), CallbackEnum.CONFIRM_ADMIN_MESSAGE)
+          .text(ctx.translate('deny-admin-message-button'), CallbackEnum.BACK)
+    });
   }
-  //if status = msg_for_admin_listen 
-  //send confirm text with buttons  
 });
 
 export default composer;

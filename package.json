@@ -4,8 +4,7 @@
   "description": "telegram bot",
   "main": "index.ts",
   "scripts": {
-    "test": "test",
-    "start": "tsc & node build/index.js",
+    "start": "tsc & cross-env NODE_ENV=development node build/index.js",
     "start:prod": "cross-env NODE_ENV=production tsc & node build/index.js",
     "watch": "cross-env NODE_ENV=development ts-node-dev index.ts "
   },

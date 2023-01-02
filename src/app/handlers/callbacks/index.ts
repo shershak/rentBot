@@ -1,11 +1,13 @@
 import { Composer } from "grammy";
-import { MyContext } from "../../types/my-context.type";
+import { MyContext } from "../../types/my-context";
 import back from "./back";
-import nothandled from "./not-handled";
+import confirmAdminMessage from "./confirm-admin-message";
+import notHandled from "./not-handled";
 
-const composer = new Composer<MyContext>();
+const callbacks = new Composer<MyContext>();
 
-composer.use(back);
-composer.use(nothandled);
+callbacks.use(back);
+callbacks.use(confirmAdminMessage)
+callbacks.use(notHandled);
 
-export default composer;
+export default callbacks;

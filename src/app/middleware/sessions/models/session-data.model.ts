@@ -1,6 +1,6 @@
-import { UserStatus } from "../../../models/user-status.enum";
+import { UserStatusEnum } from "../../../models/user-status.enum";
 
 export interface SessionData {
   __language_code: string;
-  status: UserStatus;
+  userStatus: UserStatusEnum;
 }

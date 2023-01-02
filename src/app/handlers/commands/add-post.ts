@@ -1,6 +1,6 @@
 import { Composer, InlineKeyboard } from 'grammy';
 import { CommandsEnum } from '../../models/commands.enum';
-import { MyContext } from '../../types/my-context.type';
+import { MyContext } from '../../types/my-context';
 
 const composer = new Composer<MyContext>();
 composer.command(CommandsEnum.ADDPOST, async (ctx) => {

@@ -1,6 +1,6 @@
 import { Composer, NextFunction } from "grammy";
 import { Logger } from "../../helpers/logger.service";
-import { MyContext } from "../../types/my-context.type";
+import { MyContext } from "../../types/my-context";
 
 const composer = new Composer<MyContext>();
 const logger = async (ctx: MyContext, next: NextFunction) => {

@@ -1,3 +1,5 @@
-export enum UserStatus {
+export enum UserStatusEnum {
   DEFAULT = 'DEFAULT',
+  WRITE_TO_ADMIN = 'WRITE_TO_ADMIN',
+  CONFIRMATION_MESSAGE_TO_ADMIN = 'CONFIRMATION_MESSAGE_TO_ADMIN'
 }

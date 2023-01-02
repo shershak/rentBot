@@ -1,22 +1,23 @@
 import { Composer } from 'grammy';
 import { sendMainMessage } from '../../helpers/message-helper';
-import mainMenu from '../../middleware/menus/main.menu';
 import { CallbackEnum } from '../../models/callback.enum';
 import { UserStatusEnum } from '../../models/user-status.enum';
 import { MyContext } from '../../types/my-context';
 
-const composer = new Composer<MyContext>();
-composer.callbackQuery(CallbackEnum.BACK, async (ctx) => {
-  ctx.logger.log(`${CallbackEnum.BACK} pressed.`)
+const callbacks = new Composer<MyContext>();
+callbacks.callbackQuery(CallbackEnum.CONFIRM_ADMIN_MESSAGE, async (ctx) => {
+  ctx.logger.log(`${CallbackEnum.CONFIRM_ADMIN_MESSAGE} pressed.`);
+  
   if (ctx.session.userStatus === UserStatusEnum.DEFAULT) {
-    ctx.deleteMessage();
+    await ctx.deleteMessage();
   }
 
   if (ctx.session.userStatus === UserStatusEnum.WRITE_TO_ADMIN) {
-    ctx.session.userStatus = UserStatusEnum.DEFAULT
-    ctx.deleteMessage();
+    await ctx.deleteMessage();
+    await ctx.reply(ctx.translate('success-sent-message'));
     await sendMainMessage(ctx);
+    ctx.session.userStatus = UserStatusEnum.DEFAULT;
   }
 });
 
-export default composer;
+export default callbacks;

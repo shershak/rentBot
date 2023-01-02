@@ -1,5 +1,5 @@
 import { Composer } from "grammy";
-import { MyContext } from "../../types/my-context.type";
+import { MyContext } from "../../types/my-context";
 import i18n from "./i18n";
 
 const composer = new Composer<MyContext>();

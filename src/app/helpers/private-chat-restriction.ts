@@ -1,6 +1,6 @@
 import { Composer } from "grammy";
 import { ChatType } from "../models/chat-type.enum";
-import { MyContext } from "../types/my-context.type";
+import { MyContext } from "../types/my-context";
 
 const composer = new Composer<MyContext>();
 composer.use(async (ctx, next) => {

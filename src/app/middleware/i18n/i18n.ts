@@ -1,7 +1,7 @@
 import { Composer, session } from "grammy";
 import { I18n } from "@grammyjs/i18n";
 import { DEFAULT_LOCALE, LOCALES_DIR } from "../../consts";
-import { MyContext } from "../../types/my-context.type";
+import { MyContext } from "../../types/my-context";
 
 const composer = new Composer<MyContext>();
 const i18n = new I18n<MyContext>({

@@ -1,15 +1,15 @@
 import { Composer } from "grammy";
-import { MyContext } from "../../types/my-context.type";
+import { MyContext } from "../../types/my-context";
 import languages from "./languages";
 import start from "./start";
 import addpost from "./add-post";
-import admin from "./write-to-admin";
+import notHanled from "./not-handled";
 
-const composer = new Composer<MyContext>();
+const commands = new Composer<MyContext>();
 
-composer.use(start);
-composer.use(languages);
-composer.use(addpost);
-composer.use(admin);
+commands.use(start);
+commands.use(languages);
+commands.use(addpost);
+commands.use(notHanled);
 
-export default composer;
+export default commands;

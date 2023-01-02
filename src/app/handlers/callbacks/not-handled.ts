@@ -1,5 +1,5 @@
 import { Composer } from 'grammy';
-import { MyContext } from '../../types/my-context.type';
+import { MyContext } from '../../types/my-context';
 
 const composer = new Composer<MyContext>();
 composer.on("callback_query:data", async (ctx) => {

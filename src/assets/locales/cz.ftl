@@ -1,2 +1,4 @@
-change-language = 🇨🇿 Změňte jazyk
+change-language =
+  .button = 🇨🇿 Změňte jazyk
+
 back = « Zadní

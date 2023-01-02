@@ -1,9 +1,11 @@
 import { Composer } from "grammy";
-import { MyContext } from "../../types/my-context.type";
+import { MyContext } from "../../types/my-context";
+import notHandled from "./not-handled";
 import text from "./text";
 
-const composer = new Composer<MyContext>();
+const messages = new Composer<MyContext>();
 
-composer.use(text);
+messages.use(text);
+messages.use(notHandled);
 
-export default composer;
+export default messages;
